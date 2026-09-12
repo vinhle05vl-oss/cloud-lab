@@ -43,7 +43,7 @@ function StudentForm({ onStudentAdded }) {
 
       const newStudent = await res.json()
 
-      // ✅ SỬA DÒNG NÀY
+      // ✅ Hiển thị MSSV và Họ tên
       setMessage(`✅ Đã thêm sinh viên: ${form.studentId} - ${form.name}`);
       setIsError(false)
       setForm({ studentId: '', name: '', email: '' })
@@ -58,74 +58,27 @@ function StudentForm({ onStudentAdded }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        marginBottom: '24px',
-        padding: '16px',
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        background: '#fafafa',
-      }}
-    >
+    <form onSubmit={handleSubmit} style={{ marginBottom: '24px', padding: '16px', border: '1px solid #ddd', borderRadius: '8px', background: '#fafafa' }}>
       <h3 style={{ marginTop: 0 }}>Thêm sinh viên mới</h3>
 
       <div style={{ marginBottom: '10px' }}>
-        <input
-          type="text"
-          name="studentId"
-          placeholder="MSSV (VD: SV001)"
-          value={form.studentId}
-          onChange={handleChange}
-          style={{ padding: '8px', width: '300px' }}
-        />
+        <input type="text" name="studentId" placeholder="MSSV (VD: SV001)" value={form.studentId} onChange={handleChange} style={{ padding: '8px', width: '300px' }} />
       </div>
 
       <div style={{ marginBottom: '10px' }}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Họ tên (VD: Nguyen Van A)"
-          value={form.name}
-          onChange={handleChange}
-          style={{ padding: '8px', width: '300px' }}
-        />
+        <input type="text" name="name" placeholder="Họ tên (VD: Nguyen Van A)" value={form.name} onChange={handleChange} style={{ padding: '8px', width: '300px' }} />
       </div>
 
       <div style={{ marginBottom: '10px' }}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email (VD: a@example.com)"
-          value={form.email}
-          onChange={handleChange}
-          style={{ padding: '8px', width: '300px' }}
-        />
+        <input type="email" name="email" placeholder="Email (VD: a@example.com)" value={form.email} onChange={handleChange} style={{ padding: '8px', width: '300px' }} />
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        style={{
-          padding: '8px 16px',
-          background: isSubmitting ? '#ccc' : '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: isSubmitting ? 'not-allowed' : 'pointer',
-        }}
-      >
+      <button type="submit" disabled={isSubmitting} style={{ padding: '8px 16px', background: isSubmitting ? '#ccc' : '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: isSubmitting ? 'not-allowed' : 'pointer' }}>
         {isSubmitting ? 'Đang thêm...' : 'Thêm sinh viên'}
       </button>
 
       {message && (
-        <p
-          style={{
-            marginTop: '10px',
-            color: isError ? 'red' : 'green',
-            fontWeight: 'bold',
-          }}
-        >
+        <p style={{ marginTop: '10px', color: isError ? 'red' : 'green', fontWeight: 'bold' }}>
           {message}
         </p>
       )}

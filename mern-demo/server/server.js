@@ -55,28 +55,38 @@ connectDB().then(() => {
     res.json({ message: 'Hello from Express Backend!' });
   });
 // ✅ Route PUT /api/students/:id - Cập nhật sinh viên
+// ✅ Route PUT /api/students/:id - Cập nhật sinh viên
 app.put('/api/students/:id', async (req, res) => {
   try {
     if (!db) {
       return res.status(500).json({ message: 'Database chưa kết nối' });
     }
     const { id } = req.params;
-    const { mssv, hoTen, email } = req.body;
+    // ✅ Nhận ĐÚNG tên trường React gửi lên
+    const { studentId, name, email } = req.body;
 
-    console.log('PUT request:', { id, mssv, hoTen, email });
+    console.log('PUT request:', { id, studentId, name, email });
+
+    // ✅ Validate dữ liệu
+    if (!studentId || !name || !email) {
+      return res.status(400).json({
+        message: 'Thiếu thông tin',
+        received: { studentId, name, email }
+      });
+    }
 
     const result = await db.collection('students').updateOne(
       { _id: new ObjectId(id) },
-      { $set: { mssv, hoTen, email } }
+      { $set: { studentId, name, email } }   // ✅ Update ĐÚNG 3 trường
     );
 
     if (result.matchedCount === 0) {
       return res.status(404).json({ message: 'Không tìm thấy sinh viên' });
     }
 
-    res.json({ 
+    res.json({
       message: 'Cập nhật sinh viên thành công',
-      modifiedCount: result.modifiedCount 
+      modifiedCount: result.modifiedCount
     });
   } catch (error) {
     console.error('Lỗi PUT:', error);
