@@ -43,7 +43,8 @@ function StudentForm({ onStudentAdded }) {
 
       const newStudent = await res.json()
 
-      setMessage(`✅ Đã thêm sinh viên: ${newStudent.name}`)
+      // ✅ SỬA DÒNG NÀY
+      setMessage(`✅ Đã thêm sinh viên: ${form.studentId} - ${form.name}`);
       setIsError(false)
       setForm({ studentId: '', name: '', email: '' })
 

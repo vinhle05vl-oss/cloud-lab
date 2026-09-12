@@ -1,0 +1,11 @@
+node_modules
+client/node_modules
+.git
+.env
+*.log
+dist
+build
+.vscode
+permission-test
+scripts
+src
