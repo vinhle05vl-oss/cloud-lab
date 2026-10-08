@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px', maxWidth: '900px', margin: '0 auto' }}>
-      <h1>Ứng dụng Quản lý Sinh viên (MERN)</h1>
+      <h1>Ứng dụng Quản lý Sinh viên  MERN - Version 2.1</h1>
 
       <StudentForm onStudentAdded={handleStudentAdded} />
 
