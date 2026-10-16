@@ -54,6 +54,14 @@ connectDB().then(() => {
   app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hello from Express Backend!' });
   });
+    // ✅ HEALTH CHECK - Kiểm tra trạng thái Backend
+  app.get('/health', (req, res) => {
+    res.status(200).json({
+      status: 'UP',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime()
+    });
+  });
 // ✅ Route PUT /api/students/:id - Cập nhật sinh viên
 // ✅ Route PUT /api/students/:id - Cập nhật sinh viên
 app.put('/api/students/:id', async (req, res) => {
